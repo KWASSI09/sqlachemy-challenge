@@ -38,12 +38,12 @@ app = Flask(__name__)
 def welcome():
     """List all available api routes."""
     return (
-        f"Available Routes:<br/>"
-        f"/api/v1.0/precipitation<br/>"
-        f"/api/v1.0/stations<br/>"
-        f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/start<br/>"
-        f"/api/v1.0/start/end"
+        f"Available Routes:<br>"
+        f"<a href='http://127.0.0.1:5000/api/v1.0/precipitation'>/api/v1.0/precipitation</a><br>"
+        f"<a href='http://127.0.0.1:5000/api/v1.0/stations'>/api/v1.0/stations</a><br>"
+        f"<a href='http://127.0.0.1:5000/api/v1.0/tobs'>/api/v1.0/tobs</a><br>"
+        f"<a href='http://127.0.0.1:5000/api/v1.0/2016-07-29'>/api/v1.0/&lt;start date &gt;</a>use date format:YYYY-MM-DD <br>"
+        f"<a href='http://127.0.0.1:5000/api/v1.0/2016-07-29/2017-07-29'>/api/v1.0/&lt;start date &gt;/&lt;end date&gt;</a>use date format:YYYY-MM-DD"
     )
 
 
@@ -92,7 +92,7 @@ def tempartureobs():
 
     """Return a list of all temparture observation"""
 
-    # retrieving  the period previous the last data point in the database
+    # finding the period previous the last data point in the database
 
     results_date=session.query(Measurement.date).order_by(Measurement.date.desc()).first()
     date_arr=list(np.ravel(results_date))[0]
@@ -121,7 +121,7 @@ def Start_Date(start):
     """TMIN, TAVG, and TMAX for a list of dates.
     
     Args:
-        start_date (string): A date string in the format %Y-%m-%d
+        start_date : A date string in the format %Y-%m-%d
         
     Returns:
         TMIN, TAVE, and TMAX
@@ -147,8 +147,8 @@ def Start_end_date(start, end):
     """TMIN, TAVG, and TMAX for a list of dates.
     
     Args:
-        start_date (string): A date string in the format %Y-%m-%d
-        end_date (string): A date string in the format %Y-%m-%d
+        start_date: A date string in the format %Y-%m-%d
+        end_date : A date string in the format %Y-%m-%d
         
     Returns:
         TMIN, TAVE, and TMAX
